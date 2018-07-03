@@ -1,17 +1,37 @@
-# Calculator
+# Realization of lists (IndexedList and LinkedList) #
 
-## This program takes command-line arguments (number1,number2,operator) and returns the result
+## Structure ##
 
-To run application execute in cmd:
+ interfaces   | abstractClasses  |     MyLists      |   
+------------- | ---------------	 | --------------   | ------------------
+MyCollection  | MyAbstractList   |  MyIndexedList   | RealizationOfLists
+MyList        |                  |  MyLinkedList    |
+MyQueue       |                  |                  |
+MyDeque       |                  |                  |
 
-> java -jar .\console\target\Calculator-jar-with-dependencies.jar 100 -100 +
+These lists are generalized.
 
->number1=100 number2=-100 operator=+ result=0.0
+* **IndexedList** is a resizable-array implementation of the *List* interface. Implements
+  the next list operations:
+	* void add(int index, T elem);
+	* void add(T elem);
+	* void ensureCapacity(int min capacity);
+	* int size();
+	* T get(int index);
+	* T set(int index, T elem);
+	* T remove (int index);
+	* void showList().
 
-## :exclamation: Note
-
-To multiply two numbers you need to pass the operator to the command-line in this form: "*"
-
-> java -jar .\console\target\Calculator-jar-with-dependencies.jar 2 5 "*"
-
->number1=2 number2=5 operator=* result=10.0
+* **LinkedList** is a doubly-linked list implementation of the *List* and *Deque* interfaces.  
+  Implements the next list operations:
+	* void addFirst(T elem);
+	* void add(T elem);
+	* void add(int index, T elem);
+	* T removeFirst();
+	* T removeLast();
+	* T remove(int index);
+	* void set(int index, T elem);
+	* T getFirst();
+	* T getLast();
+	* T get(int index);
+	* void showList().
