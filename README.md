@@ -2,12 +2,12 @@
 
 ## Structure ##
 
-| interfaces   | abstractClasses | Right-aligned |
-|    :---:     |      :---:      |     ---:      |
-| MyCollection | MyAbstractList  | MyIndexedList |
-| MyList       | 	         | MyLinkedList  |
-| MyQueue      |		 |		 |
-| MyDeque      |		 |		 |
+| interfaces   | abstractClasses |    MyLists    |  	              |
+|    :---:     |      :---:      |     ---:      | ---: 	      |
+| MyCollection | MyAbstractList  | MyIndexedList | RealizationOfLists |
+| MyList       | 	         | MyLinkedList  |		      |
+| MyQueue      |		 |		 |	              |
+| MyDeque      |		 |		 |	              |
 
 These lists are generalized.
 
