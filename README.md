@@ -3,7 +3,7 @@
 ## Structure ##
 
 | interfaces   | abstractClasses |    MyLists    |  	              |
-|    :---:     |      :---:      |     ---:      |        ---: 	      |
+|    :---:     |      :---:      |     :---:     |       :---: 	      |
 | MyCollection | MyAbstractList  | MyIndexedList | RealizationOfLists |
 | MyList       | 	         | MyLinkedList  |		      |
 | MyQueue      |		 |		 |	              |
