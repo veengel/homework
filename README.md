@@ -1,37 +1,52 @@
-# Realization of lists (IndexedList and LinkedList) #
+# Testing #
 
-## Structure ##
+## Tasks ##
 
- interfaces   | abstractClasses  |     MyLists      |   
-------------- | ---------------	 | --------------   | ------------------
-MyCollection  | MyAbstractList   |  MyIndexedList   | RealizationOfLists
-MyList        |                  |  MyLinkedList    |
-MyQueue       |                  |                  |
-MyDeque       |                  |                  |
+ * Протестировать индексированный и связной список из домашней работы #3.
+   Тест-кейсы должны покрывать все контракты компонентов, описанные в домашней работе #3 и 
+   включать в себя позитивные и негативные сценарии.
+   Протестировать все сценарии с выбросом исключений с помощью @Rule.
+   При тестировании использовать jUnit 4 и hamcrest, кейсы должны быть организованы с разделением 
+   на секции GIVEN-WHEN-THEN.
 
-These lists are generalized.
+ * Протестировать класс Processor, зависящий от компонентов Producer и Consumer. 
+   Для проверки взаимодействия Processor’а с его зависимостями использовать Mockito.
+   Чтобы проверить как Processor вызывает зависимости используйте Mockito#verify().
+   Чтобы проверить аргумент Consumer#consume() используйте ArgumentCaptor.
+   Обязательный тест-кейс – замокать результат Producer#produce() для того, чтобы протестировать 
+   негативный сценарий – выброс IllegalStateException.
+  
+   ```
+   public class Processor { 
+       private Producer producer; 
+       private Consumer consumer; 
 
-* **IndexedList** is a resizable-array implementation of the *List* interface. Implements
-  the next list operations:
-	* void add(int index, T elem);
-	* void add(T elem);
-	* void ensureCapacity(int min capacity);
-	* int size();
-	* T get(int index);
-	* T set(int index, T elem);
-	* T remove (int index);
-	* void showList().
+       public void process() { 
+           String value = producer.produce(); 
 
-* **LinkedList** is a doubly-linked list implementation of the *List* and *Deque* interfaces.  
-  Implements the next list operations:
-	* void addFirst(T elem);
-	* void add(T elem);
-	* void add(int index, T elem);
-	* T removeFirst();
-	* T removeLast();
-	* T remove(int index);
-	* void set(int index, T elem);
-	* T getFirst();
-	* T getLast();
-	* T get(int index);
-	* void showList().
+           if (value == null) { 
+               throw new IllegalStateException(); 
+           } consumer.consume(value); 
+        } 
+
+       public void setProducer(Producer producer) { 
+           this.producer = producer; 
+        } 
+
+       public void setConsumer(Consumer consumer) { 
+           this.consumer = consumer; 
+        } 
+   } 
+
+   public class Producer { 
+       public String produce() { 
+           return "Magic value"; 
+       } 
+   } 
+
+   public class Consumer { 
+       public void consume(String value) { 
+           System.out.println("Consumed -> " + value); 
+       } 
+   }
+   ```
