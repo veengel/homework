@@ -1,52 +1,27 @@
-# Testing #
+# Collections and Streams #
 
 ## Tasks ##
 
- * Протестировать индексированный и связной список из домашней работы #3.
-   Тест-кейсы должны покрывать все контракты компонентов, описанные в домашней работе #3 и 
-   включать в себя позитивные и негативные сценарии.
-   Протестировать все сценарии с выбросом исключений с помощью @Rule.
-   При тестировании использовать jUnit 4 и hamcrest, кейсы должны быть организованы с разделением 
-   на секции GIVEN-WHEN-THEN.
+1. Using Stream API write a method that returns a comma separated string based on a given list of integers. 
+Each element should be preceded by the letter 'e' if the number is even, and preceded by the letter 'o' if the number is odd. 
+For example, if the input list is (3,44), the output should be 'o3,e44'.
+ 
+2. Using Stream API implement a method that produces the largest city per state. 
 
- * Протестировать класс Processor, зависящий от компонентов Producer и Consumer. 
-   Для проверки взаимодействия Processor’а с его зависимостями использовать Mockito.
-   Чтобы проверить как Processor вызывает зависимости используйте Mockito#verify().
-   Чтобы проверить аргумент Consumer#consume() используйте ArgumentCaptor.
-   Обязательный тест-кейс – замокать результат Producer#produce() для того, чтобы протестировать 
-   негативный сценарий – выброс IllegalStateException.
-  
-   ```
-   public class Processor { 
-       private Producer producer; 
-       private Consumer consumer; 
+```
+Map<String, City> getLargestCityPerState(Collection<City> cities) { } 
+```
+```
+class City { 
+	private String state; 
+	private long population; 
+}
+``` 
 
-       public void process() { 
-           String value = producer.produce(); 
+3. Write a method `public static <T> Stream<T> zip(Stream<T> first, Stream<T> second)` that alternates elements from the streams first and second, 
+stopping when one of them runs out of elements.
 
-           if (value == null) { 
-               throw new IllegalStateException(); 
-           } consumer.consume(value); 
-        } 
-
-       public void setProducer(Producer producer) { 
-           this.producer = producer; 
-        } 
-
-       public void setConsumer(Consumer consumer) { 
-           this.consumer = consumer; 
-        } 
-   } 
-
-   public class Producer { 
-       public String produce() { 
-           return "Magic value"; 
-       } 
-   } 
-
-   public class Consumer { 
-       public void consume(String value) { 
-           System.out.println("Consumed -> " + value); 
-       } 
-   }
-   ```
+4. You have a class Book with fields (title, author, isbn). You have a List of books. 
+You have `Map<String, Integer>` where key - author name and value - number of books that were written by this author in a list. 
+You have to implement a mechanism when every change in the list immediatly reflect the map. 
+For example there was a book by "Author1" added to the list. In this case value by key "Author1" have to increase by 1.
